@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package protocol;
+message Cat{
+    string id = 1;
+    string name = 2;
+    string color = 3;
+    bool gender = 4;
+    float weight = 5;
+    bool homeless = 6;
+}
+message AddRequest{
+    Cat cat = 1;
+}
+message EmptyResponse{
+
+}
+message DeleteRequest{
+    string id = 1;
+}
+message UpdateRequest{
+    Cat cat = 1;
+}
+message GetRequest{
+    string id = 1;
+}
+message GetResponse{
+    Cat cat = 1;
+}
+message EmptyRequest{
+
+}
+message ListingResponse{
+    repeated Cat cat = 1;
+}
+
+service CatService{
+    rpc Add(AddRequest) returns(EmptyResponse);
+    rpc Delete(DeleteRequest) returns(EmptyResponse);
+    rpc Update(UpdateRequest) returns(EmptyResponse);
+    rpc Get(GetRequest) returns(GetResponse);
+    rpc Listing(EmptyRequest) returns(ListingResponse);
+}
+
